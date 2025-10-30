@@ -10,10 +10,12 @@ public class MazeGenerator3D : MonoBehaviour
     public int depth = 15;
     public float cellSize = 1.0f;
 
-    public GameObject floorPrefab;
+    public GameObject floorPrefab;      
     public GameObject wallPrefab;
     public GameObject keyPrefab;
     public GameObject exitPrefab;
+    public GameObject playerPrefab;
+
 
     [Header("NavMesh")]
     public NavMeshSurface navSurface;
@@ -25,7 +27,8 @@ public class MazeGenerator3D : MonoBehaviour
         GenerateMaze();
         BuildMaze();
         PlaceKeyAndExit();
-        BakeNavMesh();
+        SpawnPlayer();   // ← NavMeshの前
+        BakeNavMesh();   // ← これでNavMesh確定
     }
 
     // 迷路生成
@@ -79,12 +82,19 @@ public class MazeGenerator3D : MonoBehaviour
     // 鍵と出口を配置
     void PlaceKeyAndExit()
     {
-        Vector3 keyPos = GetRandomFloorPos();
-        Vector3 exitPos = GetRandomFloorPos();
+        Vector3 keyPos = GetUniqueFloorPos();
+
+        // 出口は鍵と十分離れた場所に配置
+        Vector3 exitPos;
+        do
+        {
+            exitPos = GetUniqueFloorPos();
+        } while (Vector3.Distance(exitPos, keyPos) < width * 0.4f); // 40% 以上離す
 
         Instantiate(keyPrefab, keyPos + Vector3.up * 0.5f, Quaternion.identity, transform);
         Instantiate(exitPrefab, exitPos + Vector3.up * 0.5f, Quaternion.identity, transform);
     }
+
 
     // NavMesh Bake
     void BakeNavMesh()
@@ -99,6 +109,28 @@ public class MazeGenerator3D : MonoBehaviour
             Debug.LogWarning("NavMeshSurface が設定されていません。");
         }
     }
+
+
+    // プレイヤーの生成
+    void SpawnPlayer()
+    {
+        if (playerPrefab == null)
+        {
+            Debug.LogWarning("Player Prefab が設定されていません。");
+            return;
+        }
+
+        Vector3 playerPos = GetUniqueFloorPos();
+        GameObject player = Instantiate(playerPrefab, playerPos + Vector3.up * 0.5f, Quaternion.identity);
+
+        // カメラに追従対象を設定
+        Camera.main.GetComponent<TopDownCamera>().player = player.transform;
+
+        Debug.Log($"プレイヤーを {playerPos} に生成しました。");
+    }
+
+
+
 
     // 補助関数
     bool IsInBounds(Vector2Int pos)
@@ -116,7 +148,10 @@ public class MazeGenerator3D : MonoBehaviour
         return arr;
     }
 
-    Vector3 GetRandomFloorPos()
+    // プレイヤーと敵・出口が重ならないようにする
+    List<Vector3> usedPositions = new List<Vector3>();
+
+    Vector3 GetUniqueFloorPos()
     {
         List<Vector3> floors = new List<Vector3>();
         for (int x = 1; x < width - 1; x++)
@@ -125,10 +160,18 @@ public class MazeGenerator3D : MonoBehaviour
             {
                 if (maze[x, z] == 0)
                 {
-                    floors.Add(new Vector3(x * cellSize, 0, z * cellSize));
+                    Vector3 pos = new Vector3(x * cellSize, 0, z * cellSize);
+                    if (!usedPositions.Contains(pos))
+                    {
+                        floors.Add(pos);
+                    }
                 }
             }
         }
-        return floors[Random.Range(0, floors.Count)];
+        if (floors.Count == 0) return Vector3.zero;
+        Vector3 selected = floors[Random.Range(0, floors.Count)];
+        usedPositions.Add(selected);
+        return selected;
     }
+
 }
