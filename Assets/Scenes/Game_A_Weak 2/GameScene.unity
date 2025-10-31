@@ -188,7 +188,6 @@ MonoBehaviour:
   wallPrefab: {fileID: 7806506924439008361, guid: d0285c8c3cfe6df44bd88fb40358aa72, type: 3}
   keyPrefab: {fileID: 1990935326963739482, guid: bd9c47c2fc235744db437b064bd6f15d, type: 3}
   exitPrefab: {fileID: 2851722978594581605, guid: 9473fba91104233499241206a62588ab, type: 3}
-  enemyPrefab: {fileID: 1747665049097696453, guid: c84c085bfbe1a044ab913d3b9e75052d, type: 3}
   playerPrefab: {fileID: 5860187602138575352, guid: bc6950541fea011488cd20ca729a571c, type: 3}
   navSurface: {fileID: 386722213}
 --- !u!4 &386722215
@@ -455,7 +454,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1135129895}
   - component: {fileID: 1135129894}
-  - component: {fileID: 1135129893}
   - component: {fileID: 1135129896}
   - component: {fileID: 1135129897}
   m_Layer: 0
@@ -465,14 +463,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!81 &1135129893
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1135129892}
-  m_Enabled: 1
 --- !u!20 &1135129894
 Camera:
   m_ObjectHideFlags: 0
@@ -680,7 +670,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1807565131}
   - component: {fileID: 1807565130}
-  - component: {fileID: 1807565129}
   - component: {fileID: 1807565128}
   - component: {fileID: 1807565132}
   m_Layer: 0
@@ -734,14 +723,6 @@ MonoBehaviour:
     m_MipBias: 0
     m_VarianceClampScale: 0.9
     m_ContrastAdaptiveSharpening: 0
---- !u!81 &1807565129
-AudioListener:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1807565126}
-  m_Enabled: 1
 --- !u!20 &1807565130
 Camera:
   m_ObjectHideFlags: 0
