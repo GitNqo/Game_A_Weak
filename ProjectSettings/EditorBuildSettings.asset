@@ -8,7 +8,7 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Game_A_Weak 2/TitleScene.unity
     guid: 8ec613273657f2246b13e768d37659e5
   - enabled: 1
@@ -17,7 +17,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Game_A_Weak 2/ClearScene.unity
     guid: 91cb377ab4fcbe546935748fafbaf7a7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Game_A_Weak 2/GameOverScene.unity
     guid: 17d3357736223fb47a4f5b78c34a1a6e
   m_configObjects:
