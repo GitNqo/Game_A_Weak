@@ -11,15 +11,18 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Game_A_Weak 2/TitleScene.unity
     guid: 8ec613273657f2246b13e768d37659e5
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Game_A_Weak 2/GameScene.unity
     guid: 47db25a7e27fc45498c477b3f1545e30
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/Game_A_Weak 2/ClearScene.unity
     guid: 91cb377ab4fcbe546935748fafbaf7a7
   - enabled: 0
     path: Assets/Scenes/Game_A_Weak 2/GameOverScene.unity
     guid: 17d3357736223fb47a4f5b78c34a1a6e
+  - enabled: 1
+    path: Assets/Scenes/Weak4/Weak4.unity
+    guid: 682e5a4f544f8af4baa1bf264c9f3b96
   m_configObjects:
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 052faaac586de48259a63d0c4782560b, type: 3}
   m_UseUCBPForAssetBundles: 0
